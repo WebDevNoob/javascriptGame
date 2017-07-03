@@ -5,16 +5,6 @@ var lastRender = 0;
 var  width = c.width;
 var  height = c.height;
 //Inital Starting Position
-<<<<<<< HEAD
-    var startX=50;
-    var startY=80;
-var state = {
-	x: 50,
-	y: c.height + 50,
-	ySpeed: 8,
-	xSpeed: 8,
-	deg: 45,
-=======
 var ship = new Image(); 
 ship.src = "shuttle.png";
 
@@ -25,7 +15,6 @@ var state = {
 	xSpeed: 0,
 	angle: 0, 
     angleSpeed: 5,
->>>>>>> 25a49c5228369086d87e7cd072ac9fbbc9f51de3
 	pressedKeys: {
   	}
 };
@@ -48,24 +37,6 @@ var resize = function() {
 
 //Clear and Draw to Screen
 function draw(state){
-<<<<<<< HEAD
-	ctx.beginPath();
-	ctx.rect(state.x, state.y, 100, 100);
-	ctx.fillStyle = "red";
-	ctx.fill();
-	drawRotatedRect(state.x,state.y,100,20,45);
-}
-
-    function drawRotatedRect(x,y,width,height,degrees){
-
-        // first save the untranslated/unrotated context
- 
-        ctx.beginPath();
-        // move the rotation point to the center of the rect
-        ctx.translate( x+width/2, y+height/2 );
-        // rotate the rect
-        ctx.rotate(degrees*Math.PI/180);
-=======
 	ctx.clearRect(0,0, c.width, c.height);
 	ctx.save();
 	ctx.translate(state.x,state.y);
@@ -74,20 +45,7 @@ function draw(state){
 	ctx.drawImage(ship,-(ship.width/2), -(ship.height/2), ship.width,ship.height);
 	ctx.restore();
 };
->>>>>>> 25a49c5228369086d87e7cd072ac9fbbc9f51de3
 
-        // draw the rect on the transformed context
-        // Note: after transforming [0,0] is visually [x,y]
-        //       so the rect needs to be offset accordingly when drawn
-        ctx.rect( -width/2, -height/2, width,height);
-
-        ctx.fillStyle="gold";
-        ctx.fill();
-
-        // restore the context to its untranslated/unrotated state
- 
-
-    }
 //Check Bounds of the global state
 function checkBounds() {
 	if (state.y + 78 > height) {
