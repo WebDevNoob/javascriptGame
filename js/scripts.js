@@ -4,11 +4,14 @@ var ctx = c.getContext("2d");
 var height, width;
 var lastRender = 0;
 //Inital Starting Position
+    var startX=50;
+    var startY=80;
 var state = {
 	x: 50,
 	y: c.height + 50,
 	ySpeed: 8,
 	xSpeed: 8,
+	deg: 45,
 	pressedKeys: {
   	}
 };
@@ -23,13 +26,35 @@ var resize = function() {
 
 //Clear and Draw to Screen
 function draw(state){
-	ctx.clearRect(0,0, c.width, c.height);
 	ctx.beginPath();
 	ctx.rect(state.x, state.y, 100, 100);
 	ctx.fillStyle = "red";
 	ctx.fill();
-};
+	drawRotatedRect(state.x,state.y,100,20,45);
+}
 
+    function drawRotatedRect(x,y,width,height,degrees){
+
+        // first save the untranslated/unrotated context
+ 
+        ctx.beginPath();
+        // move the rotation point to the center of the rect
+        ctx.translate( x+width/2, y+height/2 );
+        // rotate the rect
+        ctx.rotate(degrees*Math.PI/180);
+
+        // draw the rect on the transformed context
+        // Note: after transforming [0,0] is visually [x,y]
+        //       so the rect needs to be offset accordingly when drawn
+        ctx.rect( -width/2, -height/2, width,height);
+
+        ctx.fillStyle="gold";
+        ctx.fill();
+
+        // restore the context to its untranslated/unrotated state
+ 
+
+    }
 //Check Bounds of the global state
 function checkBounds() {
 	if (state.y > height) {
