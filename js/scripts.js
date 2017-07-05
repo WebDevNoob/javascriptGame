@@ -106,11 +106,17 @@ function processKeys() {
 function update(progress){
 	checkBounds();
     processKeys();
-    state.x += state.xSpeed * Math.cos(state.angle * Math.PI / 180);
-    state.y += state.ySpeed * Math.sin(state.angle * Math.PI / 180);
+    var xDirection = Math.cos(state.angle * Math.PI / 180);
+    var yDirection = Math.sin(state.angle * Math.PI / 180);
+    state.x += state.xSpeed * xDirection;
+    state.y += state.ySpeed * yDirection;
     if(state.xSpeed > 0 && state.ySpeed > 0){
-        state.xSpeed -= .01;
-        state.ySpeed -= .01;
+        state.xSpeed -= .02;
+        state.ySpeed -= .02;
+    }
+    if(state.xSpeed < 0 && state.ySpeed < 0){
+        state.xSpeed = 0;
+        state.ySpeed = 0;
     }
 };
 //Main loop
